@@ -1,6 +1,6 @@
 package com.github.ajisrael.springcoredemo.rest;
 
-import com.github.ajisrael.springcoredemo.common.Coach;
+import com.github.ajisrael.util.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

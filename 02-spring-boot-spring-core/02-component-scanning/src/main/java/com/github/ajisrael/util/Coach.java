@@ -1,4 +1,4 @@
-package com.github.ajisrael.springcoredemo.common;
+package com.github.ajisrael.util;
 
 public interface Coach {
 
