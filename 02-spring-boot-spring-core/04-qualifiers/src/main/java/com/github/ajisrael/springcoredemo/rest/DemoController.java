@@ -12,7 +12,7 @@ public class DemoController {
     private Coach myCoach;
 
     @Autowired
-    public void setCoach(Coach theCoach) { // method name doesn't matter, could be anything
+    public DemoController(Coach theCoach) {
         myCoach = theCoach;
     }
 
