@@ -1,0 +1,34 @@
+version: "3.8"
+services:
+  mysqldb:
+    container_name: luv2code_mysql
+    image: mysql/mysql-server:latest
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    environment:
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_ROOT_PASSWORD: "password"
+    volumes:
+      - ./luv2code_mysqldb_data:/var/lib/mysql
+    ports:
+      - 3360:3306
+    expose:
+      - 3360
+    networks:
+      luv2code_network:
+  phpmyadmin:
+    container_name: luv2code_phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    links:
+      - mysqldb
+    restart: always
+    environment:
+      PMA_HOST: mysqldb
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - 9080:80
+    networks:
+      luv2code_network:
+networks:
+  luv2code_network:
