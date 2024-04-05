@@ -1,3 +1,5 @@
+-- (EDIT) Did not need to run commands directly in terminal on container
+--        Just pressed the wrong button in DBeaver and ran the final command before the first two
 -- Had to run commands directly in terminal on container to work
 -- Login command (will be prompted to give password)
 mysql -u root -p
