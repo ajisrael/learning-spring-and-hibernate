@@ -23,7 +23,7 @@ public class StudentDAOImpl implements StudentDAO {
 
     // implement save method
     @Override
-    @Transactional
+    @Transactional // added when we make a change to the DB
     public void save(Student theStudent) {
         entityManager.persist(theStudent);
     }
@@ -50,5 +50,25 @@ public class StudentDAOImpl implements StudentDAO {
 
         // return query results
         return theQuery.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void updateStudent(Student theStudent) {
+        entityManager.merge(theStudent);
+    }
+
+    @Override
+    @Transactional
+    public void deleteStudent(Integer id) {
+        Student student = entityManager.find(Student.class, id);
+        entityManager.remove(student);
+    }
+
+    @Override
+    @Transactional
+    public int deleteAllStudents() {
+        int rowsDeleted = entityManager.createQuery("DELETE FROM Student").executeUpdate();
+        return rowsDeleted;
     }
 }
