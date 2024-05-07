@@ -70,5 +70,30 @@ http://localhost:8080/employees?page=1
 
 Use the `spring.data.rest.default-page-size` to set the default size of pages
 
+You can specify the size of pages as well:
+```
+http://localhost:8080/employees?page=0&size=15
+http://localhost:8080/employees?page=1&size=15
+...
+``
+
 Use the `spring.data.rest.max-page-size` to set the maximum size of pages
 
+### Sorting
+You can sort by the property names of your entity
+ex: `firstName`,`lastName`,`email`
+
+Sort by last name (ascending is default)
+```
+http://localhost:8080/employees?sort=lastName
+```
+
+Sort by first name descending
+```
+http://localhost:8080/employees?sort=firstName,desc
+```
+
+Sort by last name, then first name, ascending
+```
+http://localhost:8080/employees?sort=lastName,firstName,asc
+```
