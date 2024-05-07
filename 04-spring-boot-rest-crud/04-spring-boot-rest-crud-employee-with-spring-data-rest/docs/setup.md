@@ -44,3 +44,8 @@ INSERT INTO `employee` VALUES
 ```
 
 Database config/integration can be seen in `application.properties`
+
+
+## Spring Data Rest Endpoint
+
+Without changing the `base-path` the url is at localhost:8080/employees
