@@ -46,6 +46,29 @@ INSERT INTO `employee` VALUES
 Database config/integration can be seen in `application.properties`
 
 
-## Spring Data Rest Endpoint
+## Spring Data Rest 
 
+### Paths
 Without changing the `base-path` the url is at localhost:8080/employees
+
+Use the `spring.data.rest.base-path` property in `application.properties` to specify a base path
+
+Replace `@Repository` with the below line if you want to change the name of the resource in the rest endpoint path in the repository class.
+```java
+@RepositoryRestResource(path="members")
+```
+
+### Pagination
+By default, Spring Data Rest returns the first 20 elements (page size = 20)
+
+You can navigate to different pages of data using the query params in the following requests as an example:
+```
+http://localhost:8080/employees?page=0
+http://localhost:8080/employees?page=1
+...
+```
+
+Use the `spring.data.rest.default-page-size` to set the default size of pages
+
+Use the `spring.data.rest.max-page-size` to set the maximum size of pages
+
