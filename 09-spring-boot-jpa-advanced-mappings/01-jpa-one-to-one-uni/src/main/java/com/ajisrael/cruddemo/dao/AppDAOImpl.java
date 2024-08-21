@@ -3,10 +3,10 @@ package com.ajisrael.cruddemo.dao;
 import com.ajisrael.cruddemo.entity.Instructor;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-@Component
+@Repository
 public class AppDAOImpl implements AppDAO {
 
     // define field for entity manager
