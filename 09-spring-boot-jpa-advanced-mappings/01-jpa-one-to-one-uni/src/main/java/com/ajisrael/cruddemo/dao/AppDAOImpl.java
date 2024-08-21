@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 @Repository
 public class AppDAOImpl implements AppDAO {
 
@@ -26,5 +28,12 @@ public class AppDAOImpl implements AppDAO {
     @Override
     public Instructor findInstructorById(int theId) {
         return entityManager.find(Instructor.class, theId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteInstructorById(int theId) {
+        Instructor instructor = entityManager.find(Instructor.class, theId);
+        if (!Objects.isNull(instructor)) entityManager.remove(instructor);
     }
 }
