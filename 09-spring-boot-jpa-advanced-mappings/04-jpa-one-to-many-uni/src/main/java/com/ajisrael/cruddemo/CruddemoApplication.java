@@ -4,6 +4,7 @@ import com.ajisrael.cruddemo.dao.AppDAO;
 import com.ajisrael.cruddemo.entity.Course;
 import com.ajisrael.cruddemo.entity.Instructor;
 import com.ajisrael.cruddemo.entity.InstructorDetail;
+import com.ajisrael.cruddemo.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,28 +23,37 @@ public class CruddemoApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 
 		return runner -> {
-//			createInstructor(appDAO);
-
-//			findInstructor(appDAO);
-
-//			deleteInstructor(appDAO);
-
-//			findInstructorDetail(appDAO);
-
-//			deleteInstructorDetail(appDAO);
-
-//			createInstructorWithCourses(appDAO);
-
-//			findInstructorWithCoursesWithJoinFetch(appDAO);
-
-//			findCoursesForInstructor(appDAO);
-
-//			updateInstructor(appDAO);
-
-//			updateCourse(appDAO);
-
-			deleteCourse(appDAO);
+			createInstructorWithCoursesAndReviews(appDAO);
 		};
+	}
+
+	private void createInstructorWithCoursesAndReviews(AppDAO appDAO) {
+		Instructor tempInstructor = new Instructor("Susan", "Public", "susan@luv2code.com");
+
+		InstructorDetail tempInstructorDetail = new InstructorDetail("http://www.youtube.com", "Video Games");
+
+		tempInstructor.setInstructorDetail(tempInstructorDetail);
+
+		Course course1 = new Course("Air Guitar - The Ultimate Guide");
+		Course course2 = new Course("The Pinball Masterclass");
+
+		Review review1 = new Review("Great course!");
+		Review review2 = new Review("Eh could have been better.");
+		Review review3 = new Review("Meh, not the best");
+
+		course1.add(review1);
+		course1.add(review2);
+		course2.add(review3);
+
+		tempInstructor.add(course1);
+		tempInstructor.add(course2);
+
+		System.out.println("Saving instructor: " + tempInstructor);
+		System.out.println("The courses: " + tempInstructor.getCourses());
+
+		appDAO.save(tempInstructor);
+
+		System.out.println("Done!!!");
 	}
 
 	private void updateCourse(AppDAO appDAO) {
