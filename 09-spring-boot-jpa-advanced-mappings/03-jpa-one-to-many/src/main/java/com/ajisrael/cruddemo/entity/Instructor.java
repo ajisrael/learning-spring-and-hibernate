@@ -38,7 +38,7 @@ public class Instructor {
     private InstructorDetail instructorDetail;
 
     @OneToMany(mappedBy = "instructor",
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY, // Default does not actually need to be specified
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Course> courses;
 
@@ -115,7 +115,6 @@ public class Instructor {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", instructorDetail=" + instructorDetail +
-                ", courses=" + courses +
                 '}';
     }
 }
