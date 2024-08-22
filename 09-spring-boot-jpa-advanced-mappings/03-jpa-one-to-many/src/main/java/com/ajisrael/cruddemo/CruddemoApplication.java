@@ -38,8 +38,24 @@ public class CruddemoApplication {
 
 //			findCoursesForInstructor(appDAO);
 
-			updateInstructor(appDAO);
+//			updateInstructor(appDAO);
+
+			updateCourse(appDAO);
 		};
+	}
+
+	private void updateCourse(AppDAO appDAO) {
+		int id = 10;
+
+		System.out.println("Finding course id: " + id);
+		Course course = appDAO.findCourseById(id);
+
+		System.out.println("Updating course id: " + id);
+		course.setTitle("Enjoy the Simple Things");
+
+		appDAO.update(course);
+
+		System.out.println("Done");
 	}
 
 	private void updateInstructor(AppDAO appDAO) {
