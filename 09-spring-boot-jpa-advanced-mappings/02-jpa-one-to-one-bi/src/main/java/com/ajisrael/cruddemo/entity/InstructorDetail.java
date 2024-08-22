@@ -25,7 +25,8 @@ public class InstructorDetail {
     private String hobby;
 
     // maps on the instructorDetail property of the Instructor Class
-    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    // Using all CascadeTypes but REMOVE to be able to delete an instructorDetail but not the associated instructor
+    @OneToOne(mappedBy = "instructorDetail", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Instructor instructor;
 
     public InstructorDetail() {
