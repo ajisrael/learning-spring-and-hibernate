@@ -23,9 +23,25 @@ public class CruddemoApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 
 		return runner -> {
-			createInstructorWithCoursesAndReviews(appDAO);
+//			createInstructorWithCoursesAndReviews(appDAO);
+
+			createCourseAndReviews(appDAO);
 		};
 	}
+
+	private void createCourseAndReviews(AppDAO appDAO) {
+		Course course = new Course("Pacman - How To Score One Million Points");
+
+		course.add(new Review("Great course ... loved it!"));
+		course.add(new Review("Cool course, job well done."));
+		course.add(new Review("Eh could have been better."));
+
+		System.out.println("Saving course: " + course);
+		System.out.println("The reviews: " + course.getReviews());
+
+		appDAO.save(course);
+	}
+
 
 	private void createInstructorWithCoursesAndReviews(AppDAO appDAO) {
 		Instructor tempInstructor = new Instructor("Susan", "Public", "susan@luv2code.com");
