@@ -5,6 +5,7 @@ import com.ajisrael.cruddemo.entity.Course;
 import com.ajisrael.cruddemo.entity.Instructor;
 import com.ajisrael.cruddemo.entity.InstructorDetail;
 import com.ajisrael.cruddemo.entity.Review;
+import com.ajisrael.cruddemo.entity.Student;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,14 +24,26 @@ public class CruddemoApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 
 		return runner -> {
-//			createInstructorWithCoursesAndReviews(appDAO);
 
-//			createCourseAndReviews(appDAO);
-
-//			retrieveCourseAndReviews(appDAO);
-
-			deleteCourseAndReviews(appDAO);
+			createCourseAndStudents(appDAO);
 		};
+	}
+
+	private void createCourseAndStudents(AppDAO appDAO) {
+		Course course = new Course("Pacman - How To Score One Million Points");
+
+		Student student1 = new Student("John", "Doe", "john@luv2code.com");
+		Student student2 = new Student("Mary", "Public", "john@luv2code.com");
+
+		course.add(student1);
+		course.add(student2);
+
+		System.out.println("Saving course: " + course);
+		System.out.println("associated students: " + course.getStudents());
+
+		appDAO.save(course);
+
+		System.out.println("Done");
 	}
 
 	private void deleteCourseAndReviews(AppDAO appDAO) {
